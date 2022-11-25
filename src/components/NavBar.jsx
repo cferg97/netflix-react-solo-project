@@ -52,7 +52,7 @@ const Navigation = (props) => {
             <Nav.Item>
                 <NavDropdown title="User" className="d-flex" >
                     <NavDropdown.Item><div class="d-flex align-items-center">
-                        <img src="./assets/avatar.png" id="avatar-small"/>
+                        <img src="./assets/avatar.png" id="avatar-small" alt="avatar"/>
                         </div> Manage Profile</NavDropdown.Item>
                     <NavDropdown.Item>Account</NavDropdown.Item>
                     <NavDropdown.Item>Help Center</NavDropdown.Item>
