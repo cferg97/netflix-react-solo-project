@@ -11,9 +11,9 @@ function App() {
     <div className="App d-flex flex-column">
       <Navigation />
       <Container fluid className="d-flex flex-column">
-      <Gallery1 title="Trending Series"/>
-      <Gallery1 title="Trending Movies" />
-      <Gallery1 title="Most Popular All Time" />
+      <Gallery1 title="Harry Potter" query="Harry Potter"/>
+      <Gallery1 title="Avatar" query="Avatar" />
+      <Gallery1 title="Star Wars" query="Star Wars" />
 
       </Container>
       <NetflixFooter className="bottom-fixed"/>
