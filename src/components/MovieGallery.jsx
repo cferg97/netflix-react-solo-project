@@ -1,10 +1,12 @@
 import { Component } from "react";
 import { Container, Row, Col, Carousel, Spinner } from "react-bootstrap";
+import Alerts from "./AlertComp"
 
 class MovieGallery extends Component {
   state = {
     movies: [],
     isLoading: true,
+    isError: false
   };
 
   fetchMovies = async () => {
@@ -23,12 +25,14 @@ class MovieGallery extends Component {
       } else {
         console.log("there was a problem fetching movies");
         this.setState({
+          isError: true,
           isLoading: false,
         });
       }
     } catch (error) {
       console.log(error);
       this.setState({
+        isError: true,
         isLoading: false,
       });
     }
@@ -43,8 +47,10 @@ class MovieGallery extends Component {
       <Container fluid className="movie-gallery m-2">
         <h5 className="text-light mt-2 mb-2">{this.props.query}</h5>
         <Carousel indicators={false}>
-          <Carousel.Item active>
+        {this.state.isError && <Alerts />}
+          <Carousel.Item active="true">
             <Container className="movie-row">
+            
             {this.state.isLoading && (
           <Spinner animation="border" role="status">
             <span className="sr-only">Loading...</span>
@@ -62,6 +68,7 @@ class MovieGallery extends Component {
           <Carousel.Item>
             <Container className="movie-row">
               <Row>
+              
                 {this.state.movies.slice(6,13).map((n) => (
                   <Col md={2} key={n.imdbID}>
                     <img alt="" className="movie-cover" src={n.Poster} />

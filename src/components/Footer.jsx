@@ -1,11 +1,11 @@
-import { Container, } from "react-bootstrap";
+import { Container, Row, Col} from "react-bootstrap";
 
 const NetflixFooter = () => {
   return (
     <Container>
         <footer>
-            <div className="row">
-                <div className="col-md-3">
+            <Row>
+                <Col md={3}>
                     <ul className="navbar-nav">
                         <li className="nav-item">
                             <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-facebook text-secondary me-2" viewBox="0 0 16 16">
@@ -22,7 +22,7 @@ const NetflixFooter = () => {
                               </svg>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link text-muted">Audio and Subtitles</a>
+                            <a className="nav-link text-muted" >Audio and Subtitles</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link text-muted">Media Center</a>
@@ -40,8 +40,8 @@ const NetflixFooter = () => {
                             <a className="nav-link text-muted">© 1997-2021 Netflix Inc</a>
                         </li>
                     </ul>
-                </div>
-                <div className="col-md-3">
+                </Col>
+                <Col md={3}>
                     <ul className="navbar-nav">
                          
                         <li className="nav-item">
@@ -56,8 +56,8 @@ const NetflixFooter = () => {
                         
                        
                     </ul>
-                </div>
-                <div className="col-md-3">
+                </Col>
+                <Col md={3}>
                     <ul className="navbar-nav">
                          
                         <li className="nav-item">
@@ -72,8 +72,8 @@ const NetflixFooter = () => {
                         
                        
                     </ul>
-                </div>
-                <div className="col-md-3">
+                </Col>
+                <Col md={3}>
                     <ul className="navbar-nav">
                          
                         <li className="nav-item">
@@ -88,8 +88,8 @@ const NetflixFooter = () => {
                         
                        
                     </ul>
-                </div>
-            </div>
+                </Col>
+            </Row>
         </footer>
     </Container>
   );
