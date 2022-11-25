@@ -26,7 +26,7 @@ body{
 }
 
 .logo{
-    height:48px !important;
+    width: 120px !important;
 }
 
 #avatar{
@@ -60,6 +60,12 @@ body{
     margin-left:4em;
 }
 
+.movie-header{
+    position: absolute;
+    bottom: -10;
+    z-index: 1;
+    text-align: center;
+}
 
 
 .movie-row{
@@ -67,7 +73,9 @@ body{
     margin-bottom:50px;
 }
 .movie-cover{
-    width:99%;
+    height: 192px;
+    width: 99%;
+    object-fit: cover;
     transition:0.3s;
     opacity: 0.7;
 }
@@ -112,24 +120,13 @@ body{
     border-radius:50%;
 }
 
-input[type="text"] {
-    padding:10px;
-    background:var(--secondary-color);
-    width:100%;
-    color:white;
-    font-size: 24px;
-    font-weight:500;
+.submit-btn{
+    color: var(--secondary-color);
+    background: none;
+    border: none;
 }
 
-input[type="text"]:focus{
-    outline:none;
+.submit-btn:hover{
+    color: white;
 }
 
-input[type="checkbox"] {
-
-    transform: scale(1.5);
-    margin-bottom:10px;
-    
-}
-
- 
