@@ -63,7 +63,7 @@ const MovieDetails = () => {
               )}
               <Card.Title>{movie.Title}</Card.Title>
               <Card.Text>
-                Released: {movie.Released}
+                {movie.Released}
                 <br></br>
                 {movie.Runtime}
                 <br></br>

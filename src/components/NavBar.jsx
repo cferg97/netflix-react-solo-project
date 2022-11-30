@@ -2,19 +2,19 @@ import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
-const Navigation = (props) => {
+const Navigation = () => {
   const location = useLocation()
 
   return (
     <Navbar expand="lg" bg="dark" className="color-nav" variant="dark">
       <Container fluid>
-        <Navbar.Brand href="#">
+        <Link to="/">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png"
             alt="Netflix Logo"
-            className="logo"
+            className="logo mr-3"
           />
-        </Navbar.Brand>
+        </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
