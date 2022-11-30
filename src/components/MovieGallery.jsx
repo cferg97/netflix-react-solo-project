@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { Container, Row, Col, Carousel, Spinner } from "react-bootstrap";
 import Alerts from "./AlertComp";
+import { Link } from "react-router-dom"
 
 class MovieGallery extends Component {
   state = {
@@ -58,7 +59,9 @@ class MovieGallery extends Component {
               <Row>
                 {this.state.movies.slice(0, 4).map((m) => (
                   <Col md={3} key={m.imdbID}>
+                    <Link to={"/details/" + m.imdbID}>
                     <img alt="" className="movie-cover" src={m.Poster} />
+                    </Link>
                   </Col>
                 ))}
               </Row>
@@ -69,7 +72,9 @@ class MovieGallery extends Component {
               <Row>
                 {this.state.movies.slice(4, 8).map((n) => (
                   <Col md={3} key={n.imdbID}>
+                    <Link to={"/details/" + n.imdbID}>
                     <img alt="" className="movie-cover" src={n.Poster} />
+                    </Link>
                   </Col>
                 ))}
               </Row>
@@ -80,7 +85,9 @@ class MovieGallery extends Component {
               <Row>
                 {this.state.movies.slice(8, 12).map((o) => (
                   <Col md={3} key={o.imdbID}>
+                    <Link to={"/details/" + o.imdbID}>
                     <img alt="" className="movie-cover" src={o.Poster} />
+                    </Link>
                   </Col>
                 ))}
               </Row>
