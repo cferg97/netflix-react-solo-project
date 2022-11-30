@@ -1,8 +1,10 @@
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navigation = (props) => {
+  const location = useLocation()
+
   return (
     <Navbar expand="lg" bg="dark" className="color-nav" variant="dark">
       <Container fluid>
@@ -16,8 +18,8 @@ const Navigation = (props) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Link to="/"><div className="nav-link">Home</div></Link>
-            <Link to="/tvshows"><div className="nav-link">TV Shows</div></Link>
+            <Link to="/"><div className={location.pathname === "/" ? "nav-link active" : "nav-link"}>Home</div></Link>
+            <Link to="/tvshows"><div className={location.pathname === "/tvshows" ? "nav-link active" : "nav-link"}>TV Shows</div></Link>
             <Nav.Link>Movies</Nav.Link>
             <Nav.Link>Recently Added</Nav.Link>
             <Nav.Link>My List</Nav.Link>
@@ -26,7 +28,7 @@ const Navigation = (props) => {
           <Nav className="ml-auto">
             <Nav.Link>
               {" "}
-              <input id="search-bar" type="text"></input>
+              <input id="search-bar" type="text" placeholder={location.pathname === "/tvshows" ? "Search for TV Shows" : "Search"}></input>
               <button className="submit-btn" type="submit"><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"

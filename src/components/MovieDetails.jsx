@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Col, Container, Row, Card, Button, Nav } from "react-bootstrap";
+import { Col, Container, Row, Card, Button, Spinner } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-
+import NotFound from "./NotFound";
+import Alerts from "./AlertComp";
 const MovieDetails = () => {
   const params = useParams();
   const [movie, setMovie] = useState([]);
@@ -19,8 +20,10 @@ const MovieDetails = () => {
       );
       if (response.ok) {
         let data = await response.json();
-        setMovie(data);
-        setIsLoading(false);
+        setTimeout(() => {
+          setMovie(data);
+          setIsLoading(false);
+        }, 2000);
       } else {
         console.log("There was a problem fetching data");
         setIsError(true);
@@ -35,21 +38,40 @@ const MovieDetails = () => {
 
   useEffect(() => {
     getMovieDetails(imdbID);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Container fluid className="mt-4 mb-5 pb-5">
+      {movie === [] && <NotFound />}
+
       <Row className="d-flex justify-content-center align-content-center text-center">
         <Col xs={12} md={6}>
           <Card bg="secondary" className="align-items-center">
-            <Card.Img style={{width: "19rem"}} variant="top" src={movie.Poster} className="mt-2"/>
+            <Card.Img
+              style={{ width: "19rem" }}
+              variant="top"
+              src={movie.Poster}
+              className="mt-2"
+            />
             <Card.Body>
+              {isError && <Alerts />}
+              {isLoading && (
+                <Spinner animation="border" role="status">
+                  <span className="sr-only">Loading...</span>
+                </Spinner>
+              )}
               <Card.Title>{movie.Title}</Card.Title>
               <Card.Text>
-                Released: {movie.Released}<br></br>
+                Released: {movie.Released}
+                <br></br>
+                {movie.Runtime}
+                <br></br>
                 {movie.Plot}
               </Card.Text>
-              <Button variant="outline-info" onClick={() => navigate(-1)}>Go back</Button>
+              <Button variant="outline-info" onClick={() => navigate(-1)}>
+                Go back
+              </Button>
             </Card.Body>
           </Card>
         </Col>
