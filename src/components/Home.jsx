@@ -12,9 +12,9 @@ const Home = (props) => {
           className="genre-button d-flex"
         />
       </Container>
-      <MovieGallery query="Sonic The Hedgehog" />
-      <MovieGallery query="Harry Potter" />
-      <MovieGallery query="Avatar" />
+      <MovieGallery query="Movies" />
+      {/* <MovieGallery query="Harry Potter" />
+      <MovieGallery query="Avatar" /> */}
     </>
   );
 };

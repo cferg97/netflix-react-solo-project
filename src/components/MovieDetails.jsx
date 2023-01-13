@@ -69,6 +69,11 @@ const MovieDetails = () => {
                 <br></br>
                 {movie.Plot}
               </Card.Text>
+              <a href={`https://m2-soloproj-netflix-api-production.up.railway.app/media/${movie.imdbID}/pdf`}>
+                <Button className="mr-2" variant="outline-success">
+                  Generate PDF
+                </Button>
+              </a>
               <Button variant="outline-info" onClick={() => navigate(-1)}>
                 Go back
               </Button>
