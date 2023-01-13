@@ -12,9 +12,7 @@ class MovieGallery extends Component {
 
   fetchMovies = async () => {
     try {
-      let response = await fetch(
-        `https://m2-soloproj-netflix-api-production.up.railway.app/media?search=${this.props.query}`
-      );
+      let response = await fetch(`http://localhost:3001/media`);
       if (response.ok) {
         let data = await response.json();
         setTimeout(() => {
@@ -61,7 +59,7 @@ class MovieGallery extends Component {
                 {this.state.movies.slice(0, 4).map((m) => (
                   <Col md={3} key={m.imdbID}>
                     <Link to={"/details/" + m.imdbID}>
-                      <img alt="" className="movie-cover" src={m.poster} />
+                      <img alt="" className="movie-cover" src={m.Poster} />
                     </Link>
                   </Col>
                 ))}
