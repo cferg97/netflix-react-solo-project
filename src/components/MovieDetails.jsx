@@ -16,7 +16,7 @@ const MovieDetails = () => {
   const getMovieDetails = async () => {
     try {
       let response = await fetch(
-        `http://www.omdbapi.com/?i=${imdbID}&apikey=595fb9cf`
+        `https://www.omdbapi.com/?i=${imdbID}&apikey=595fb9cf`
       );
       if (response.ok) {
         let data = await response.json();
