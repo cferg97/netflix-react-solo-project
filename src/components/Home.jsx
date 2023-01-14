@@ -1,5 +1,5 @@
 import MovieGallery from "./MovieGallery";
-import { Container, DropdownButton } from "react-bootstrap"
+import { Container, DropdownButton } from "react-bootstrap";
 
 const Home = (props) => {
   return (
@@ -13,6 +13,8 @@ const Home = (props) => {
         />
       </Container>
       <MovieGallery query="Harry Potter" />
+      <MovieGallery query="Sonic" />
+      <MovieGallery query="Avatar" />
       {/* <MovieGallery query="Harry Potter" />
       <MovieGallery query="Avatar" /> */}
     </>

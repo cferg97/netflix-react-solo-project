@@ -12,7 +12,9 @@ class MovieGallery extends Component {
 
   fetchMovies = async () => {
     try {
-      let response = await fetch(`http://localhost:3001/media`);
+      let response = await fetch(
+        `http://localhost:3001/media?search=${this.props.query}`
+      );
       if (response.ok) {
         let data = await response.json();
         setTimeout(() => {
@@ -66,7 +68,7 @@ class MovieGallery extends Component {
               </Row>
             </Container>
           </Carousel.Item>
-          {/* <Carousel.Item>
+          {/* {/* <Carousel.Item>
             <Container className="movie-row">
               <Row>
                 {this.state.movies.slice(4, 8).map((n) => (
@@ -78,8 +80,8 @@ class MovieGallery extends Component {
                 ))}
               </Row>
             </Container>
-          </Carousel.Item>
-          <Carousel.Item>
+          </Carousel.Item> */}
+          {/* <Carousel.Item>
             <Container className="movie-row">
               <Row>
                 {this.state.movies.slice(8, 12).map((o) => (
