@@ -13,7 +13,7 @@ class MovieGallery extends Component {
   fetchMovies = async () => {
     try {
       let response = await fetch(
-        `http://localhost:3001/media?search=${this.props.query}`
+        `https://m2-soloproj-netflix-api-production.up.railway.app/media?search=${this.props.query}`
       );
       if (response.ok) {
         let data = await response.json();
