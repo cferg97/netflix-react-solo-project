@@ -84,9 +84,12 @@ const MovieDetails = () => {
 
   useEffect(() => {
     getMovieDetails();
-    dispatch(getReviewsAction(imdbID));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    dispatch(getReviewsAction(imdbID));
+  }, [imdbID]);
 
   return (
     <Container fluid className="mt-4 mb-5 pb-5">
