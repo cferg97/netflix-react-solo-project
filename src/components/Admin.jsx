@@ -21,9 +21,13 @@ const AdminPage = () => {
     imdbID: imdbID,
   };
 
+  console.log(itemToSend);
+
   const posterChangeHandler = (e) => {
-    setPoster(e.target.files[0]);
+    setPoster(e.target.file);
   };
+
+  console.log(poster)
 
   const onChangeHandler = (value, fieldToSet) => {
     fieldToSet(value);
@@ -35,7 +39,7 @@ const AdminPage = () => {
       const formData = new FormData();
       formData.append("poster", poster);
       dispatch(addPosterAction(idForPoster, formData));
-    }, 500);
+    }, 1000);
   };
 
   return (
@@ -58,6 +62,7 @@ const AdminPage = () => {
                 <Form.Label>Title</Form.Label>
                 <Form.Control
                   type="text"
+                  value={title}
                   placeholder="Enter the title"
                   onChange={(e) => {
                     onChangeHandler(e.target.value, setTitle);
@@ -69,6 +74,7 @@ const AdminPage = () => {
                 <Form.Label>Year of release</Form.Label>
                 <Form.Control
                   type="text"
+                  value={year}
                   placeholder="Enter the year of release. e.g 2017"
                   onChange={(e) => onChangeHandler(e.target.value, setYear)}
                 />
@@ -77,6 +83,7 @@ const AdminPage = () => {
               <Form.Group>
                 <Form.Label>Type of media</Form.Label>
                 <Form.Control
+                  value={media}
                   as="select"
                   onChange={(e) => onChangeHandler(e.target.value, setMedia)}
                 >
@@ -89,6 +96,7 @@ const AdminPage = () => {
               <Form.Group>
                 <Form.Label>IMDB ID</Form.Label>
                 <Form.Control
+                  value={imdbID}
                   type="text"
                   placeholder="Must begin with 'tt'. Found on IMDB site."
                   onChange={(e) => onChangeHandler(e.target.value, setImdbId)}

@@ -142,14 +142,14 @@ export const addPosterAction = (id, data) => {
   const options = {
     method: "POST",
     body: data,
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
+    // headers: {
+    //   "Content-Type": "multipart/form-data",
+    // },
   };
   return async () => {
     try {
       let response = await fetch(
-        `https://m2-soloproj-netflix-api-production.up.railway.app/media/${id}`,
+        `https://m2-soloproj-netflix-api-production.up.railway.app/media/${id}/poster`,
         options
       );
       if (response.ok) {
