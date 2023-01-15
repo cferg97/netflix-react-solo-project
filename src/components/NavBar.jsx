@@ -2,7 +2,7 @@ import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setSearchQueryAction } from "../redux/actions";
+import { searchAction, setSearchQueryAction } from "../redux/actions";
 import { useState } from "react";
 
 const Navigation = () => {
@@ -27,7 +27,7 @@ const Navigation = () => {
   return (
     <Navbar expand="lg" bg="dark" className="color-nav" variant="dark">
       <Container fluid>
-        <Link to="/">
+        <Link to="/" onClick={setSearchQueryAction("")}>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png"
             alt="Netflix Logo"
@@ -63,43 +63,46 @@ const Navigation = () => {
           </Nav>
 
           <Nav className="ml-auto">
-              <input
+            <input
               className="my-auto"
-                id="search-bar"
-                // onClick={() => {
-                //   if (location.pathname !== "/search") {
-                //     navigate("/search");
-                //   }
-                // }}
-                onChange={(e) => {
-                  onChangeHandler(e.target.value, setQuery);
-                }}
-                value={query}
-                type="text"
-                placeholder={
-                  location.pathname === "/tvshows"
-                    ? "Search for TV Shows"
-                    : "Search"
-                }
-              ></input>
-              <button
-                className="submit-btn my-auto"
-                onClick={() => {
-                  dispatch(setSearchQueryAction(query));
+              id="search-bar"
+              // onClick={() => {
+              //   if (location.pathname !== "/search") {
+              //     navigate("/search");
+              //   }
+              // }}
+              onChange={(e) => {
+                onChangeHandler(e.target.value, setQuery);
+              }}
+              value={query}
+              type="text"
+              placeholder={
+                location.pathname === "/tvshows"
+                  ? "Search for TV Shows"
+                  : "Search"
+              }
+            ></input>
+            <button
+              className="submit-btn my-auto"
+              onClick={() => {
+                dispatch(setSearchQueryAction(query));
+                if (location.pathname !== "/search") {
                   navigate("/search");
-                }}
+                }
+                dispatch(searchAction(query));
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                className="bi bi-search icon"
+                viewBox="0 0 16 16"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-search icon"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                </svg>
-              </button>
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+              </svg>
+            </button>
             <Nav.Link>KIDS</Nav.Link>
             <Nav.Link>
               <svg

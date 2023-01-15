@@ -1,15 +1,47 @@
 import { useEffect, useState } from "react";
-import { Col, Container, Row, Card, Button, Spinner } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Row,
+  Card,
+  Button,
+  Spinner,
+  ListGroup,
+  Form,
+} from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import NotFound from "./NotFound";
 import Alerts from "./AlertComp";
+import { parseISO } from "date-fns";
+import format from "date-fns/format";
+import {
+  addReviewAction,
+  deleteReviewAction,
+  getReviewsAction,
+} from "../redux/actions";
+import { useDispatch } from "react-redux";
+import { TiDelete } from "react-icons/ti";
+import { useSelector } from "react-redux";
+
 const MovieDetails = () => {
+  const dispatch = useDispatch();
   const params = useParams();
   const [movie, setMovie] = useState([]);
+  const reviews = useSelector((state) => state.reviews);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  console.log(params.imdbID);
+  const [comment, setComment] = useState("");
+  const [rate, setRate] = useState(1);
   const imdbID = params.imdbID;
+
+  const reviewToSend = {
+    rate: rate,
+    comment: comment,
+  };
+
+  const onChangeHandler = (value, fieldToSet) => {
+    fieldToSet(value);
+  };
 
   const navigate = useNavigate();
 
@@ -36,8 +68,23 @@ const MovieDetails = () => {
     }
   };
 
+  const onSubmitHandler = () => {
+    setIsLoading(true);
+    dispatch(addReviewAction(imdbID, reviewToSend));
+    setRate(1);
+    setComment("");
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
+  };
+
+  const onDeleteHandler = (id) => {
+    dispatch(deleteReviewAction(id));
+  };
+
   useEffect(() => {
-    getMovieDetails(imdbID);
+    getMovieDetails();
+    dispatch(getReviewsAction(imdbID));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -81,6 +128,85 @@ const MovieDetails = () => {
               </Button>
             </Card.Body>
           </Card>
+        </Col>
+      </Row>
+      <Row className="d-flex justify-content-center align-content-center text-center mt-5">
+        <Col md={10}>
+          <h2 className="text-white">Reviews</h2>
+          {isLoading && (
+            <Spinner className="my-auto" animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          )}
+          <Card bg="secondary" className="align-items-center">
+            <ListGroup className="w-100 justify-items" variant="flush">
+              {reviews &&
+                reviews.map((r) => (
+                  <ListGroup.Item
+                    variant="secondary"
+                    className="d-flex flex-column"
+                  >
+                    <Container>
+                      Posted on{" "}
+                      {format(parseISO(r.createdAt), "dd/MM/yyyy' at 'HH:mm")}
+                    </Container>
+                    {r.rate}/5
+                    <br />
+                    {r.comment}
+                    <Container>
+                      <Button
+                        variant="danger"
+                        onClick={() => onDeleteHandler(r._id)}
+                      >
+                        <TiDelete />
+                      </Button>
+                    </Container>
+                  </ListGroup.Item>
+                ))}
+            </ListGroup>
+          </Card>
+        </Col>
+      </Row>
+      <Row className="d-flex justify-content-center align-content-center text-center mt-5">
+        <Col md={6}>
+          <Container className="comment-box p-3">
+            <h2>Add a review</h2>
+            <Form>
+              <Form.Group
+                className="w-50 mx-auto"
+                controlId="exampleForm.ControlSelect1"
+              >
+                <Form.Label>Select Rating</Form.Label>
+                <Form.Control
+                  as="select"
+                  value={rate}
+                  onChange={(e) => {
+                    onChangeHandler(e.target.value, setRate);
+                  }}
+                >
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </Form.Control>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Enter your comment</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  value={comment}
+                  onChange={(e) => {
+                    onChangeHandler(e.target.value, setComment);
+                  }}
+                />
+              </Form.Group>
+              <Button variant="info" onClick={onSubmitHandler}>
+                Submit
+              </Button>
+            </Form>
+          </Container>
         </Col>
       </Row>
     </Container>

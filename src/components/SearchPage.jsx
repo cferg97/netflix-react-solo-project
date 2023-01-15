@@ -14,18 +14,20 @@ const SearchPage = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(setIsLoadingAction(true));
-    setTimeout(() => {
-      dispatch(searchAction(searchQuery));
-      dispatch(setIsLoadingAction(false));
-    }, 500);
-  }, [], [searchQuery]);
-  
+  useEffect(
+    () => {
+      dispatch(setIsLoadingAction(true));
+      setTimeout(() => {
+        dispatch(searchAction(searchQuery));
+        dispatch(setIsLoadingAction(false));
+      }, 500);
+    },
+    [searchQuery]
+  );
 
   return (
     <Container>
-      <Row>
+      <Row> 
         <Col md={10}>
           {isLoading && (
             <Spinner animation="border" role="status">
@@ -37,7 +39,11 @@ const SearchPage = () => {
           )}
           {searchQuery &&
             searchResults &&
-            searchResults.map((m) => <Link to={"/details/" + m.imdbID}><h3 className="text-white hover">{m.Title}</h3></Link>)}
+            searchResults.map((m) => (
+              <Link to={"/details/" + m.imdbID}>
+                <h3 className="text-white hover">{m.Title}</h3>
+              </Link>
+            ))}
         </Col>
       </Row>
     </Container>

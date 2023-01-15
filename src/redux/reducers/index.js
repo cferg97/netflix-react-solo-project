@@ -1,9 +1,15 @@
-import { SET_QUERY, SET_IS_LOADING, SET_SEARCH_RESULTS } from "../actions";
+import {
+  SET_QUERY,
+  SET_IS_LOADING,
+  SET_SEARCH_RESULTS,
+  SET_REVIEWS,
+} from "../actions";
 
 const initialState = {
   query: "",
   isLoading: false,
   searchResults: [],
+  reviews: [],
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -24,6 +30,12 @@ const searchReducer = (state = initialState, action) => {
       return {
         ...state,
         searchResults: action.payload,
+      };
+    }
+    case SET_REVIEWS: {
+      return {
+        ...state,
+        reviews: action.payload,
       };
     }
     default:

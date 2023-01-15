@@ -1,53 +1,3 @@
-import { Component } from "react";
-import { Container, Row, Col, Carousel, Spinner } from "react-bootstrap";
-import Alerts from "./AlertComp";
-import { Link } from "react-router-dom";
-
-
-class MovieGallery extends Component {
-  state = {
-    movies: [],
-    isLoading: true,
-    isError: false,
-  };
-
-  fetchMovies = async () => {
-    try {
-      let response = await fetch(
-        `https://m2-soloproj-netflix-api-production.up.railway.app/media?search=${this.props.query}`
-      );
-      if (response.ok) {
-        let data = await response.json();
-        setTimeout(() => {
-          this.setState({
-            isLoading: false,
-            movies: data,
-            // movies: data.Search,
-          });
-        }, 2000);
-      } else {
-        console.log("there was a problem fetching movies");
-        this.setState({
-          isError: true,
-          isLoading: false,
-        });
-      }
-    } catch (error) {
-      console.log(error);
-      this.setState({
-        isError: true,
-        isLoading: false,
-      });
-    }
-  };
-
-  componentDidMount() {
-    this.fetchMovies(this.props.query);
-  }
-
- 
-
-  render() {
     return (
       <Container fluid className="movie-gallery m-2">
         <h5 className="text-light mt-2 mb-2">{this.props.query}</h5>
@@ -99,8 +49,3 @@ class MovieGallery extends Component {
           </Carousel.Item> */}
         </Carousel>
       </Container>
-    );
-  }
-}
-
-export default MovieGallery;
