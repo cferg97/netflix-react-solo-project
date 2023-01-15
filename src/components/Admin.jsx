@@ -24,7 +24,7 @@ const AdminPage = () => {
   console.log(itemToSend);
 
   const posterChangeHandler = (e) => {
-    setPoster(e.target.files);
+    setPoster(e.target.files[0]);
     console.log(poster);
   };
 
