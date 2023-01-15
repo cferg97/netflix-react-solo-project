@@ -24,10 +24,9 @@ const AdminPage = () => {
   console.log(itemToSend);
 
   const posterChangeHandler = (e) => {
-    setPoster(e.target.file);
+    setPoster(e.target.files);
+    console.log(poster);
   };
-
-  console.log(poster)
 
   const onChangeHandler = (value, fieldToSet) => {
     fieldToSet(value);
@@ -106,7 +105,7 @@ const AdminPage = () => {
               <Form.Group>
                 <Form.File
                   name="poster"
-                  onChange={posterChangeHandler}
+                  onChange={(e) => posterChangeHandler(e)}
                   accept=".jpg, .jpeg"
                   label="Upload Poster. JPEG only."
                 />
