@@ -3,6 +3,8 @@ import {
   SET_IS_LOADING,
   SET_SEARCH_RESULTS,
   SET_REVIEWS,
+  POST_MEDIA,
+  SET_ID,
 } from "../actions";
 
 const initialState = {
@@ -10,6 +12,7 @@ const initialState = {
   isLoading: false,
   searchResults: [],
   reviews: [],
+  id: "",
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -36,6 +39,12 @@ const searchReducer = (state = initialState, action) => {
       return {
         ...state,
         reviews: action.payload,
+      };
+    }
+    case SET_ID: {
+      return {
+        ...state,
+        id: action.payload,
       };
     }
     default:

@@ -16,6 +16,10 @@ const Navigation = () => {
     if (e.key === "Enter") {
       setTimeout(() => {
         dispatch(setSearchQueryAction(e.target.value));
+        if (location.pathname !== "/search") {
+          navigate("/search");
+        }
+        dispatch(searchAction(query));
       }, 400);
     }
   };
@@ -60,6 +64,7 @@ const Navigation = () => {
             <Nav.Link>Movies</Nav.Link>
             <Nav.Link>Recently Added</Nav.Link>
             <Nav.Link>My List</Nav.Link>
+            <Nav.Link href="/add-new">Admin</Nav.Link>
           </Nav>
 
           <Nav className="ml-auto">
@@ -76,6 +81,7 @@ const Navigation = () => {
               }}
               value={query}
               type="text"
+              onKeyDown={(e) => handleEnter(e)}
               placeholder={
                 location.pathname === "/tvshows"
                   ? "Search for TV Shows"

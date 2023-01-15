@@ -10,6 +10,7 @@ import NetflixFooter from "./components/Footer";
 import MovieDetails from "./components/MovieDetails";
 import NotFound from "./components/NotFound";
 import SearchPage from "./components/SearchPage";
+import AdminPage from "./components/Admin";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/tvshows" element={<TVShows />} />
             <Route path="/details/:imdbID" element={<MovieDetails />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/add-new" element={<AdminPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Container>
