@@ -119,7 +119,10 @@ export const newMediaAction = (data) => {
   };
   return async (dispatch) => {
     try {
-      let response = await fetch(`http://localhost:3001/media`, options);
+      let response = await fetch(
+        `https://m2-soloproj-netflix-api-production.up.railway.app/media`,
+        options
+      );
       if (response.ok) {
         let data = await response.json();
         dispatch({
@@ -145,7 +148,10 @@ export const addPosterAction = (id, data) => {
   };
   return async () => {
     try {
-      let response = await fetch(`http://localhost:3001/media/${id}`);
+      let response = await fetch(
+        `https://m2-soloproj-netflix-api-production.up.railway.app/media/${id}`,
+        options
+      );
       if (response.ok) {
         console.log("Added poster successfully");
         alert("Poster was added successfully.");
