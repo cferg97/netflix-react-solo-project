@@ -11,7 +11,7 @@ const AdminPage = () => {
   const [year, setYear] = useState("");
   const [media, setMedia] = useState("Movie");
   const [imdbID, setImdbId] = useState("");
-  const [poster, setPoster] = useState();
+  const [poster, setPoster] = useState([]);
   const idForPoster = useSelector((state) => state.id);
 
   const itemToSend = {
