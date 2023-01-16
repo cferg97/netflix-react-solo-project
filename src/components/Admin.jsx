@@ -38,7 +38,7 @@ const AdminPage = () => {
       const formData = new FormData();
       formData.append("poster", poster);
       dispatch(addPosterAction(idForPoster, formData));
-    }, 1000);
+    }, 1500);
   };
 
   return (
@@ -63,9 +63,7 @@ const AdminPage = () => {
                   type="text"
                   value={title}
                   placeholder="Enter the title"
-                  onChange={(e) => {
-                    onChangeHandler(e.target.value, setTitle);
-                  }}
+                  onChange={(e) => onChangeHandler(e.target.value, setTitle)}
                 />
               </Form.Group>
 
